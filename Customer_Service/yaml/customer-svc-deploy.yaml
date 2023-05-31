@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer-svc
+  namespace: book-store-ns
+spec:
+  selector:
+    matchLabels:
+      app: customer-svc
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: customer-svc
+    spec:
+      containers:
+        - name: customer-svc
+          image: ljx02263/customer-svc:latest
+          ports:
+            - containerPort: 3000

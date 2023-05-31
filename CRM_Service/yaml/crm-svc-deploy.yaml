@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crm-svc
+  namespace: book-store-ns
+spec:
+  selector:
+    matchLabels:
+      app: crm-svc
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: crm-svc
+    spec:
+      containers:
+        - name: crm-svc
+          image: ljx02263/crm-svc:latest
+          ports:
+            - containerPort: 3000

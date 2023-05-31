@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer-bff
+  namespace: book-store-ns
+spec:
+  selector:
+    matchLabels:
+      app: customer-bff
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: customer-bff
+    spec:
+      containers:
+        - name: customer-bff
+          image: ljx02263/customer-bff:latest
+          ports:
+            - containerPort: 49160
