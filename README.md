@@ -44,7 +44,7 @@
 ## ✈️ AWS VPC & Deployment
 <img width="904" alt="AWS VPC design" src="https://github.com/Joseph-ljx/Cloud-Based-Microservices-System/assets/92981525/e9cfc02d-87d6-4de2-8f62-362232020ea0">
 
-## :hammer_and_wrench: Endpoints
+## :hammer_and_wrench: API Endpoints
 There are over **30+** enpoints of Http request handling (please refer to the code for detail) :
 - Http Method: GET, POST, PUT, DELETE
 - Handling of the requests will depend on over **20+** services requirements.
@@ -59,6 +59,16 @@ There are over **30+** enpoints of Http request handling (please refer to the co
   - 503: Server unavailable.
   - 504: Gateway time out.
   - ...
+
+**Main endpoint functions:**
+- Adding a new book/customer to the system based on formatted structure of data, handling exceptions like already exist, illegal, missing, or malformed input, etc.
+- Updating a book/customer inside the system, handling exceptions like not founded, illegal, missing, or malformed input, etc.
+- Retrieving a book/customer information, handling exceptions like NULL return, does not exist, illegal, missing, or malformed input. Handling requests from both email search or user ID search.
+- Provide health checks (health check endpoints) for both AWS EC2 instances and EKS Kubernetes pods.
+- Provide relevent/related books search for a given book ISBN or name (recommendation system). Handling problems like no recommendation books founded, external service time out, internal server break down, etc. Formatted the results.
+- JWT token information verification.
+- Formatted return results according to different customer needs & endpoints.
+- ...
 
 ## :rocket: Implementations
 **Circuit Breaker:**
@@ -87,14 +97,19 @@ There are over **30+** enpoints of Http request handling (please refer to the co
 - I use Amazon SES API and also (Nodemailer + Gmail app authorization) to send the email.
 
 **BFF (Backend For Frontend) Services:**
-- Single Responsibility Principle
-- A BFF for each service (see figure 1). The capability of the BFF will grow over time.
-  - Identify the type of client making the request (desktop or mobile) and configure the response accordingly. The HTTP request to the BFF services contains the "user-agent" header, which specifies the client device (mobile or desktop). 
-  - This will arouse the services to handle the request and response differently.
+This will arouse the services to handle the request and response from client differently:
+- Single Responsibility Principle.
+- Process (Preprocess) the API request and forward to the service endpoints.
+- Formatted the response results transmitted from the service endpoints, performing post data prume.
+
+The capability of the BFF will grow over time.
+- Identify the type of client making the request (desktop or mobile) and configure the response accordingly. The HTTP request to the BFF services contains the "user-agent" header, which specifies the client device (mobile or desktop).
+- Each BFF is associated with 1 or more services.
+- Each BFF is going to verify the corresponding JWT token for each API calling.
 
 **JWT Token (Middleware verification):**
-
 - All requests to the BFF services will contain a valid JWT token (encoded with the HS256 algorithm).
+- Ensure the security for stateless, cross-domain microservices authorization.
 - Process and obtained a valid JWT tokwn by outsource tools.
 - The BFF will verify the JWT Token:
   - Correct format.
@@ -105,8 +120,26 @@ There are over **30+** enpoints of Http request handling (please refer to the co
 
 ##  :floppy_disk: Databases
 **AWS RDS:** 
-- MySQL (workbench, command clint) for local testing.
+- MySQL (workbench, command clint)
+  - Local connection.
+  - Local testing (development environment)
+  - SQL script test
+
 - AWS RDS (DB enginer contains MariaDB, PostgreSQL, MySQL...).
-- Managed with load balancer, security groups, subnets, EC2 entities, Master-slave (read-write) mechanisms, etc.
+  - Load balancer: balancing load for different replicas for scalability, high performance, high availability, fault tolerance, etc. 
+  - Security groups: controlling access
+  - Subnets: secure acess control. 
+  - EC2 entities: exploit instances for connection, status control, SQL execution. 
+  - Master-slave (read-write) mechanisms: adopt write replica as the main replica, ensure high availability and scalability. 
+  - ...
+
+- PuTTY & Linux
+  - Distributed System Control.
+  - EC2 instances management.
+  - Scripts execution.
+
+**Test Data:**
+- over 200 tuples of mock testing data entries
+- ETL simulation
 
 
