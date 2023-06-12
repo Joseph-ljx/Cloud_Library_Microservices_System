@@ -1,4 +1,4 @@
-# Cloud-Based-Microservices-System
+# Cloud_Library_Microservices_System
 ### Programming Languages:
 
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
@@ -22,6 +22,40 @@
 ![Apache Kafka](https://img.shields.io/badge/Apache%20Kafka-000?style=for-the-badge&logo=apachekafka)
 ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
 ![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
+
+## :hammer_and_wrench: Introduction
+This project entails the development of a robust backend system designed to facilitate efficient management of customer profiles and book information within a library setting. To ensure optimal performance, the project has been deployed on the AWS cloud and leverages the power of EKS (Kubernetes) for seamless scalability, enhanced availability, improved security, and increased operational efficiency. Additionally, the project incorporates a range of essential tools and adheres to crucial design principles to elevate various aspects of the system's functionality.
+
+### Main Tasks:
+- Retrieve a book/customer profile information
+  - Handle logic problems/exceptions like NULL return, does not exist, illegal, missing, or malformed input. 
+  - Handle requests from both email search or user ID search.
+- Add a new book/customer to the system based on formatted structure of data
+  - Handle logic problems/exceptions like already exist, illegal, missing, or malformed input, etc.
+- Update a book/customer inside the system
+  - Handle logic problems/exceptions like not founded, illegal, missing, or malformed input, etc.
+- Hanle customer requests based on different device types (mobile/pc).
+- Provide health checks (health check endpoints) for both AWS EC2 instances and EKS Kubernetes pods.
+- Provide relevent/related books search for a given book ISBN or name (recommendation system). Handling problems like no recommendation books founded, external service time out, internal server break down, etc. Formatted the results.
+- JWT token information verification.
+- Formatted return results according to different customer needs & endpoints.
+- ...
+
+### API Endpoints:
+There are over **30+** enpoints of Http request handling (please refer to the code for detail) :
+- Http Method: GET, POST, PUT, DELETE
+- Handling of the requests will depend on over **20+** services requirements.
+- Response mainly included (here I will only list the most important http response code for main functionalities)
+  - 200: Success.
+  - 201: Successful creation.
+  - 204: Success with empty response body.
+  - 400: Illegal request.
+  - 404: Does not exist.
+  - 422: Already exist in the database.
+  - 500: Internal server error.
+  - 503: Server unavailable.
+  - 504: Gateway time out.
+  - ...
   
 ## 🤖 EKS (Kubernetes) System Logic & Diagram
 - A namespace called "book-store"
@@ -43,32 +77,6 @@
 
 ## ✈️ AWS VPC & Deployment
 <img width="904" alt="AWS VPC design" src="https://github.com/Joseph-ljx/Cloud-Based-Microservices-System/assets/92981525/e9cfc02d-87d6-4de2-8f62-362232020ea0">
-
-## :hammer_and_wrench: API Endpoints
-There are over **30+** enpoints of Http request handling (please refer to the code for detail) :
-- Http Method: GET, POST, PUT, DELETE
-- Handling of the requests will depend on over **20+** services requirements.
-- Response mainly included (here I will only list the most important http response code for main functionalities)
-  - 200: Success.
-  - 201: Successful creation.
-  - 204: Success with empty response body.
-  - 400: Illegal request.
-  - 404: Does not exist.
-  - 422: Already exist in the database.
-  - 500: Internal server error.
-  - 503: Server unavailable.
-  - 504: Gateway time out.
-  - ...
-
-### Main endpoint functions:
-- Adding a new book/customer to the system based on formatted structure of data, handling exceptions like already exist, illegal, missing, or malformed input, etc.
-- Updating a book/customer inside the system, handling exceptions like not founded, illegal, missing, or malformed input, etc.
-- Retrieving a book/customer information, handling exceptions like NULL return, does not exist, illegal, missing, or malformed input. Handling requests from both email search or user ID search.
-- Provide health checks (health check endpoints) for both AWS EC2 instances and EKS Kubernetes pods.
-- Provide relevent/related books search for a given book ISBN or name (recommendation system). Handling problems like no recommendation books founded, external service time out, internal server break down, etc. Formatted the results.
-- JWT token information verification.
-- Formatted return results according to different customer needs & endpoints.
-- ...
 
 ## :rocket: Implementations
 ### Circuit Breaker:
