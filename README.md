@@ -57,7 +57,7 @@ There are over **30+** enpoints of Http request handling (please refer to the co
   - 504: Gateway time out.
   - ...
   
-## 🤖 EKS (Kubernetes) System Logic & Diagram
+## EKS (Kubernetes) System Logic & Diagram
 - A namespace called "book-store"
 <img width="899" alt="System Design" src="https://github.com/Joseph-ljx/Cloud-Based-Microservices-System/assets/92981525/6818ffe6-c0f9-4bcd-8190-8d1e8d3d7864">  
 
@@ -75,10 +75,10 @@ There are over **30+** enpoints of Http request handling (please refer to the co
 ### Health Monitoring
 - A liveness probe as an http endpoint: GET /status that responds with a plain text message saying “OK”. (Plain text message means the response should have Content-Type: text/plain) of all REST services with same end point.
 
-## ✈️ AWS VPC & Deployment
+##  AWS VPC & Deployment
 <img width="904" alt="AWS VPC design" src="https://github.com/Joseph-ljx/Cloud-Based-Microservices-System/assets/92981525/e9cfc02d-87d6-4de2-8f62-362232020ea0">
 
-## :rocket: Implementations
+## Implementations
 ### Circuit Breaker:
 
 - The call to the external service shall not significantly delay the response to the (hypothetical) end user.
@@ -129,7 +129,7 @@ The capability of the BFF will grow over time.
 
 <img width="1611" alt="JWT" src="https://github.com/Joseph-ljx/Cloud-Based-Microservices-System/assets/92981525/45a7b373-3a02-4079-82e6-c218f63d1022">
 
-##  :floppy_disk: Databases
+## Databases
 ### MySQL (workbench, command clint)
   - Local connection.
   - Local testing (development environment)
